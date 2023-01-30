@@ -6,6 +6,7 @@ const form = useForm({
     title: null,
     content: null,
     image: null,
+    user_id: null,
 });
 
 function storeBlog() {

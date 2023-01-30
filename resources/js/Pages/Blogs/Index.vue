@@ -36,6 +36,11 @@ const props = defineProps({
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <div class="flex flex-col justify-center h-full pr-5 pl-5 pb-5">
+                            <p class="leading-relaxed mb-8 ml-10">Gemaakt door: {{ blog.user_name }} </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

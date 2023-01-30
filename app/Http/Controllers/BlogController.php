@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+
 
 class BlogController extends Controller
 {
@@ -20,6 +22,8 @@ class BlogController extends Controller
                         'title' => $blog->title,
                         'content' => $blog->content,
                         'image' => asset('storage/' . $blog->image),
+                        'user_id' => $blog->user_id,
+                        'user_name' => User::find($blog->user_id)->name,
                     ];
                 })
             ]
@@ -39,6 +43,7 @@ class BlogController extends Controller
             'title' => Request::input('title'),
             'content' => Request::input('content'),
             'image' => $image,
+            'user_id' => auth()->user()->id,
         ]);
 
         return Redirect::route('blog.index');
