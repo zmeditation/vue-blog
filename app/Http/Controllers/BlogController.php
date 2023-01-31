@@ -25,6 +25,7 @@ class BlogController extends Controller
                         'image' => asset('storage/' . $blog->image),
                         'user_id' => $blog->user_id,
                         'user_name' => User::find($blog->user_id)->name,
+                        'created_at' => $blog->created_at,
                         'logged_in' => Auth::id(),
                     ];
                 })

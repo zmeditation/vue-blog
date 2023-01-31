@@ -27,8 +27,8 @@ const props = defineProps({
                         <Link :href="`/blog/${blog.id}/edit`"><button type="button" class=" float-right inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Edit</button></Link>
                     </div>
                         <div class="container mx-auto flex flex-wrap pt-6">
-                        <div class="w-full md:w-1/2">
-                            <img :src="blog.image" class="ml-16 w-10/12 h-5/6"/>
+                        <div class="w-full md:w-1/2 flex items-center">
+                            <img :src="blog.image" class="ml-16 w-10/12 h-5/6 max-h-96"/>
                         </div>
                         <div class="w-full md:w-1/2">
                             <div class="flex flex-col justify-center h-full pr-5 pl-5 pb-5">
@@ -38,8 +38,8 @@ const props = defineProps({
                         </div>
                     </div>
                     <div>
-                        <div class="flex flex-col justify-center h-full pr-5 pl-5 pb-5">
-                            <p class="leading-relaxed mb-8 ml-10">Gemaakt door: {{ blog.user_name }} </p>
+                        <div class="flex flex-col justify-center items-center h-full pr-5 pl-5">
+                            <p class="leading-relaxed mb-8 ml-10">{{ blog.created_at}} by {{ blog.user_name }} </p>
                         </div>
                     </div>
                 </div>
