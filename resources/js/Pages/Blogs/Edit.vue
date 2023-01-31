@@ -5,6 +5,7 @@ import { Head, Link, useForm, router } from '@inertiajs/vue3';
 const props = defineProps({
     blog: Object,
     image : String,
+    logged_in: Number,
 });
 
 const form = useForm({
@@ -38,7 +39,7 @@ function updateBlog() {
                     <Link href="/blog" class="px-4 py-2 bg-indigo-500 hover:bg-indico-600 text-white rounded">Back</Link>
                 </div>
                 <div>
-                    <div class="grid place-content-center mt-10">
+                    <div v-if="blog.user_id == logged_in" class="grid place-content-center mt-10">
                         <form @submit.prevent="updateBlog" class="bg-white shadow-md m-2 p-2 rounded">
                             <div class="sm:col-span-6">
                                 <label for="title" class="block text-lg font-medium text-gray-700">Title</label>
@@ -66,6 +67,10 @@ function updateBlog() {
                             </div>
                         </form>
                     </div>    
+                    <div v-else class="place-content-center mt-20">
+                        <h1 class="text-8xl text-gray-500 font-bold text-center">403</h1>
+                        <h1 class="text-2xl text-gray-500 font-bold text-center">You are <span class="text-indigo-500">not</span> authorized to edit this blog</h1>
+                    </div>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 
 class BlogController extends Controller
@@ -24,6 +25,7 @@ class BlogController extends Controller
                         'image' => asset('storage/' . $blog->image),
                         'user_id' => $blog->user_id,
                         'user_name' => User::find($blog->user_id)->name,
+                        'logged_in' => Auth::id(),
                     ];
                 })
             ]
@@ -53,7 +55,8 @@ class BlogController extends Controller
     {
         return Inertia::render('Blogs/Edit', [
             'blog' => $blog,
-            'image' => asset('storage/' . $blog->image)
+            'image' => asset('storage/' . $blog->image),
+            'logged_in' => Auth::id(),
         ]);
     }
 
@@ -78,6 +81,10 @@ class BlogController extends Controller
 
     public function delete(Blog $blog)
     {
+        if($blog->user_id != Auth::id()){
+            return Redirect::route('blog.index');
+        }
+        
         Storage::delete('public/'. $blog->image);
         $blog->delete();
 

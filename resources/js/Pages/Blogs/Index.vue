@@ -21,7 +21,7 @@ const props = defineProps({
                     <Link href="/blog/create" class="px-4 py-2 bg-indigo-500 hover:bg-indico-600 text-white rounded">Create</Link>
                 </div>
                 <div v-for="blog in blogs" :key="blog.id" class="bg-white overflow-hidden shadow-xl sm:rounded-lg mb-5">
-                    <div class="mt-3">
+                    <div class="mt-3" v-if="blog.user_id == blog.logged_in">
                         <Link :href="`/blog/${blog.id}`" method="delete" as="button" type="button" class=" float-right mr-3 inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700  sm:ml-3 sm:w-auto sm:text-sm">Delete</Link>
                         <Link :href="`/blog/${blog.id}/edit`"><button type="button" class=" float-right inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Edit</button></Link>
                     </div>
