@@ -39,7 +39,7 @@ const props = defineProps({
                     </div>
                     <div>
                         <div class="flex flex-col justify-center items-center h-full pr-5 pl-5">
-                            <p class="leading-relaxed mb-8 ml-10">{{ blog.created_at}} by {{ blog.user_name }} </p>
+                            <p class="leading-relaxed mb-8 ml-10">{{ blog.created_at }} by <span class="text-indigo-500"> {{ blog.user_name }} </span></p>
                         </div>
                     </div>
                 </div>
