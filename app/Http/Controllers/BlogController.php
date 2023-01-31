@@ -17,7 +17,7 @@ class BlogController extends Controller
     {
         return Inertia::render('Blogs/Index',
             [
-                'blogs' => Blog::all()->map(function($blog){
+                'blogs' => Blog::Newest()->map(function($blog){
                     return [
                         'id' => $blog->id,
                         'title' => $blog->title,
@@ -84,7 +84,7 @@ class BlogController extends Controller
         if($blog->user_id != Auth::id()){
             return Redirect::route('blog.index');
         }
-        
+
         Storage::delete('public/'. $blog->image);
         $blog->delete();
 
