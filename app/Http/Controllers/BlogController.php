@@ -17,7 +17,7 @@ class BlogController extends Controller
     {
         return Inertia::render('Blogs/Index',
             [
-                'blogs' => Blog::all()->map(function($blog){
+                'blogs' => Blog::Newest()->map(function($blog){
                     return [
                         'id' => $blog->id,
                         'title' => $blog->title,
@@ -25,6 +25,7 @@ class BlogController extends Controller
                         'image' => asset('storage/' . $blog->image),
                         'user_id' => $blog->user_id,
                         'user_name' => User::find($blog->user_id)->name,
+                        'created_at' => $blog->created_at,
                         'logged_in' => Auth::id(),
                     ];
                 })
@@ -84,7 +85,7 @@ class BlogController extends Controller
         if($blog->user_id != Auth::id()){
             return Redirect::route('blog.index');
         }
-        
+
         Storage::delete('public/'. $blog->image);
         $blog->delete();
 
