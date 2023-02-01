@@ -18,7 +18,8 @@ class BlogController extends Controller
         return Inertia::render('Blogs/Index', [
             'blogs' => Blog::query()
                 ->when(Request::input('search'), function ($query) {
-                    $query->where('title', 'like', '%' . Request::input('search') . '%');
+                    $query->where('title', 'like', '%' . Request::input('search') . '%')
+                        ->orWhere('content', 'like', '%' . Request::input('search') . '%');
                 })
                 ->orderBy('created_at', 'desc')
                 ->paginate(5)
@@ -35,6 +36,15 @@ class BlogController extends Controller
                         'logged_in' => Auth::id(),
                     ];
                 }),
+        ]);
+    }
+
+    public function show(Blog $blog)
+    {
+        return Inertia::render('Blogs/Show', [
+            'blog' => $blog,
+            'user_name' => User::find($blog->user_id)->name,
+            'logged_in' => Auth::id(),
         ]);
     }
 

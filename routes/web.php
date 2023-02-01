@@ -32,6 +32,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{blog}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
 Route::get('/blog/{blog}/edit', [BlogController::class, 'edit'])->name('blog.edit');
 
