@@ -22,6 +22,11 @@ class Blog extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function scopeNewest()
     {
         return DB::table('blogs')->orderBy('created_at', 'desc')->get();
