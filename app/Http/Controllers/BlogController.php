@@ -15,9 +15,15 @@ class BlogController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Blogs/Index',
-            [
-                'blogs' => Blog::Newest()->map(function($blog){
+        return Inertia::render('Blogs/Index', [
+            'blogs' => Blog::query()
+                ->when(Request::input('search'), function ($query) {
+                    $query->where('title', 'like', '%' . Request::input('search') . '%');
+                })
+                ->orderBy('created_at', 'desc')
+                ->paginate(5)
+                ->withQueryString()
+                ->map(function ($blog) {
                     return [
                         'id' => $blog->id,
                         'title' => $blog->title,
@@ -25,12 +31,11 @@ class BlogController extends Controller
                         'image' => asset('storage/' . $blog->image),
                         'user_id' => $blog->user_id,
                         'user_name' => User::find($blog->user_id)->name,
-                        'created_at' => $blog->created_at,
+                        'created_at' => substr($blog->created_at , 0, 10),
                         'logged_in' => Auth::id(),
                     ];
-                })
-            ]
-        );
+                }),
+        ]);
     }
 
     public function create()

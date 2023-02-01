@@ -15,6 +15,10 @@ const props = defineProps({
         <template #header>
             <div class="flex justify-between items-center">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">Blog</h2>
+                <form action="/blog">
+                    <input type="text" v-model="search" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
                 <Link href="/blog/create" class="px-8 py-2 mr-4 bg-indigo-500 hover:bg-indico-600 text-white rounded">Create</Link>
             </div>
         </template>
@@ -39,7 +43,7 @@ const props = defineProps({
                     </div>
                     <div>
                         <div class="flex flex-col justify-center items-center h-full pr-5 pl-5">
-                            <p class="leading-relaxed mb-8 ml-10">{{ blog.created_at}} by {{ blog.user_name }} </p>
+                            <p class="leading-relaxed mb-8 ml-10">{{ blog.created_at }} by <span class="text-indigo-500"> {{ blog.user_name }} </span></p>
                         </div>
                     </div>
                 </div>
