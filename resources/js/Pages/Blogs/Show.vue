@@ -1,6 +1,11 @@
  <script setup>  
  import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+ import { library } from '@fortawesome/fontawesome-svg-core'
+ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+ import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
  import { Head, Link, useForm } from '@inertiajs/vue3';
+
+ library.add(faTrash, faPenToSquare)
 
  const props = defineProps({
      blog: Array,
@@ -25,7 +30,7 @@ function storeComment() {
  </script>
 
  <template>  
-     <Head title="Blog" />  
+    <Head title="Blog" />  
      <AuthenticatedLayout>
          <div class="py-12">
              <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -57,7 +62,13 @@ function storeComment() {
                                     <div class="flex flex-col w-full border rounded my-2">
                                         <p class="ml-4 mt-3 text-indigo-500"> {{ comment.user_name_comment }} </p>
                                         <p class="ml-4 mt-3 leading-relaxed mb-5"> {{ comment.content }} </p>
-                                        <p class="ml-4 text-xs text-gray-500 leading-relaxed mb-5">posted on {{ comment.created_at.slice(0, 10) }} </p>
+                                        <div class="flex justify-between">
+                                            <p class="ml-4 text-xs text-gray-500 leading-relaxed mb-5">posted on {{ comment.created_at.slice(0, 10) }} </p>
+                                            <div v-if="comment.user_id == logged_in">
+                                                <Link :href="`/blog/${blog.id}`" method="delete" as="button" type="button" class="text-lg mr-4"><font-awesome-icon icon="fa-solid fa-trash" style="color: rgb(129 140 248)" /></Link>
+                                                <Link :href="`/blog/${blog.id}/edit`" as="button" type="button" class="text-lg mr-4"><font-awesome-icon icon="fa-solid fa-pen-to-square" style="color: rgb(129 140 248)" /></Link>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

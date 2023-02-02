@@ -55,6 +55,7 @@ class BlogController extends Controller
                     return [
                         'user_name_comment' => User::find($comment->user_id)->name,
                         'content' => $comment->content,
+                        'user_id' => $comment->user_id,
                         'created_at' => substr($comment->created_at , 0, 10),
                     ];
                 }),
