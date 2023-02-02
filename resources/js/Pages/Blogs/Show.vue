@@ -62,7 +62,7 @@ function storeComment() {
                             <h1 class="text-lg">Comments</h1>
                             <div class="flex flex-col w-4/6">
                                 <div v-for="comment in comments" :key="comment.id" class="flex flex-col w-full">
-                                    <div class="flex flex-col w-full border rounded my-2">
+                                    <div class="flex flex-col w-full border shadow rounded my-2">
                                         <p class="ml-4 mt-3 text-indigo-500"> {{ comment.user_name_comment }} </p>
                                         <p class="ml-4 mt-3 leading-relaxed mb-5"> {{ comment.content }} </p>
                                         <div class="flex justify-between">
