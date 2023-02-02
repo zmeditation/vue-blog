@@ -16,7 +16,7 @@ const props = defineProps({
             <div class="flex justify-between items-center">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">Blog</h2>
                 <form action="/blog">
-                    <input type="text" v-model="search" placeholder="Search.." name="search">
+                    <input type="text" v-model="search" placeholder="Search.." name="search" class="rounded">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
                 <Link href="/blog/create" class="px-8 py-2 mr-4 bg-indigo-500 hover:bg-indico-600 text-white rounded">Create</Link>
