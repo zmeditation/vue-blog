@@ -6,6 +6,9 @@
      blog: Array,
      user_name: String,
      logged_in: Number,
+
+     comments: Array,
+     user_name_comment: String,
     });
 
  const created_at = props.blog.created_at.slice(0, 10);
@@ -45,6 +48,17 @@ function storeComment() {
                         <div>
                             <div class="flex flex-col justify-center items-center h-full pr-5 pl-5">
                                 <p class="leading-relaxed mb-5"> {{ created_at }} by <span class="text-indigo-500"> {{ user_name }} </span></p>
+                            </div>
+                        </div>
+                        <div class="flex justify-center flex-col items-center mb-5">
+                            <h1 class="text-lg">Comments</h1>
+                            <div class="flex flex-col items-center w-4/6">
+                                <div v-for="comment in comments" :key="comment.id" class="flex flex-col items-center w-full">
+                                    <div class="flex flex-col items-center w-full">
+                                        <p class="leading-relaxed mb-5"> {{ comment.content }} </p>
+                                        <p class="leading-relaxed mb-5"> {{ comment.created_at.slice(0, 10) }} by <span class="text-indigo-500"> {{ comment.user_name_comment }} </span></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="flex justify-center flex-col items-center mb-5">

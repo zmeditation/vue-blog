@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Redirect;
 
 class CommentController extends Controller
 {
-     public function store(Blog $blog){
-
+     public function store(Blog $blog)
+     {
         Comment::create([
             'user_id' => Auth::id(),
             'blog_id' => $blog->id,

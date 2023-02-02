@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Blog;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -45,6 +46,18 @@ class BlogController extends Controller
             'blog' => $blog,
             'user_name' => User::find($blog->user_id)->name,
             'logged_in' => Auth::id(),
+            'comments' => Comment::query()
+                ->where('blog_id', 'like', $blog->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10)
+                ->withQueryString()
+                ->map(function ($comment) {
+                    return [
+                        'user_name_comment' => User::find($comment->user_id)->name,
+                        'content' => $comment->content,
+                        'created_at' => substr($comment->created_at , 0, 10),
+                    ];
+                }),
         ]);
     }
 
