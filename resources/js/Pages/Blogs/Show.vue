@@ -51,7 +51,7 @@ function storeComment() {
                             </div>
                         </div>
                         <div>
-                            <div class="flex flex-col justify-center items-center h-full pr-5 pl-5">
+                            <div class="flex flex-col justify-center items-left h-full pr-5 pl-16">
                                 <p class="leading-relaxed mb-5"> {{ created_at }} by <span class="text-indigo-500"> {{ user_name }} </span></p>
                             </div>
                         </div>
