@@ -3,23 +3,18 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm, router } from '@inertiajs/vue3';
 
 const props = defineProps({
-    blog: Object,
-    image : String,
+    comment: Object,
     logged_in: Number,
 });
 
 const form = useForm({
-    title: props.blog.title,
-    content: props.blog.content,
-    image: null,
+    content: props.comment.content,
 });
 
-function updateBlog() {
-    router.post(`/blog/${props.blog.id}`, {
+function updateComment() {
+    router.post(`/comment/${props.comment.id}`, {
         _method: 'put',
-        title: form.title,
         content: form.content,
-        image: form.image,
     })
 }
 
@@ -39,27 +34,12 @@ function updateBlog() {
                     <Link href="/blog" class="px-4 py-2 bg-indigo-500 hover:bg-indico-600 text-white rounded">Back</Link>
                 </div>
                 <div>
-                    <div v-if="blog.user_id == logged_in" class="mt-10">
-                        <form @submit.prevent="updateBlog" class="bg-white shadow-md m-2 p-2 rounded">
-                            <div class="sm:col-span-6">
-                                <label for="title" class="block text-lg font-medium text-gray-700">Title</label>
-                                <div class="mt-2">
-                                    <input type="text" name="title" id="title" v-model="form.title" autocomplete="title" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                </div>
-                            </div>
+                    <div v-if="comment.user_id == logged_in" class="mt-10">
+                        <form @submit.prevent="updateComment" class="bg-white shadow-md m-2 p-2 rounded w-full">
                             <div class="sm:col-span-6">
                                 <label for="content" class="block mt-1 text-lg font-medium text-gray-700">Content</label>
                                 <div class="mt-2">
                                     <textarea id="content" name="content" v-model="form.content" rows="6" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
-                                </div>
-                            </div>
-                            <div class="sm:col-span-6">
-                                <label for="image" class="block mt-1 text-lg font-medium text-gray-700">Image</label>
-                                <div class="mt-2">
-                                    <input type="file" name="image" id="image" @input="form.image = $event.target.files[0]" class="shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                </div>
-                                <div class="m-2 p-2">
-                                    <img :src="image" class="w-32 h-32"/>
                                 </div>
                             </div>
                             <div class="m-2 p-2">
