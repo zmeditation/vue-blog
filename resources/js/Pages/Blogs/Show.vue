@@ -34,6 +34,9 @@ function storeComment() {
      <AuthenticatedLayout>
          <div class="py-12">
              <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="flex m-2 p-2">
+                    <Link href="/blog" class="px-4 py-2 bg-indigo-500 hover:bg-indico-600 text-white rounded">Back</Link>
+                </div>
                  <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mb-5">
                      <div class="mt-3" v-if="blog.user_id == logged_in">
                          <Link :href="`/blog/${blog.id}`" method="delete" as="button" type="button" class=" float-right mr-3 inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700  sm:ml-3 sm:w-auto sm:text-sm">Delete</Link>
