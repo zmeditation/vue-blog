@@ -52,11 +52,12 @@ function storeComment() {
                         </div>
                         <div class="flex justify-center flex-col items-center mb-5">
                             <h1 class="text-lg">Comments</h1>
-                            <div class="flex flex-col items-center w-4/6">
-                                <div v-for="comment in comments" :key="comment.id" class="flex flex-col items-center w-full">
-                                    <div class="flex flex-col items-center w-full">
-                                        <p class="leading-relaxed mb-5"> {{ comment.content }} </p>
-                                        <p class="leading-relaxed mb-5"> {{ comment.created_at.slice(0, 10) }} by <span class="text-indigo-500"> {{ comment.user_name_comment }} </span></p>
+                            <div class="flex flex-col w-4/6">
+                                <div v-for="comment in comments" :key="comment.id" class="flex flex-col w-full">
+                                    <div class="flex flex-col w-full border rounded my-2">
+                                        <p class="ml-4 mt-3 text-indigo-500"> {{ comment.user_name_comment }} </p>
+                                        <p class="ml-4 mt-3 leading-relaxed mb-5"> {{ comment.content }} </p>
+                                        <p class="ml-4 text-xs text-gray-500 leading-relaxed mb-5">posted on {{ comment.created_at.slice(0, 10) }} </p>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +65,7 @@ function storeComment() {
                         <div class="flex justify-center flex-col items-center mb-5">
                             <h1 class="text-lg">Write a comment</h1>
                             <form @submit.prevent="storeComment" class="flex flex-col items-center w-4/6">
-                                <textarea name="content" id="content" v-model="form.content" class="mb-5 w-full resize-none" rows="4"></textarea>
+                                <textarea name="content" id="content" v-model="form.content" class="mb-5 w-full rounded resize-none" maxlength="255" rows="4"></textarea>
                                 <button type="submit" class="inline-flex w-2/6 justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 sm:ml-3 sm:text-sm">Comment</button>
                             </form>
                         </div>
