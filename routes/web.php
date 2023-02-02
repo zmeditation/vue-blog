@@ -32,12 +32,15 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{blog}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
 Route::get('/blog/{blog}/edit', [BlogController::class, 'edit'])->name('blog.edit');
 
 Route::put('/blog/{blog}', [BlogController::class, 'update'])->name('blog.update');
 Route::delete('/blog/{blog}', [BlogController::class, 'delete'])->name('blog.delete');
 Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
+
+Route::post('/blog/{blog}/comment', [CommentController::class, 'store'])->name('comment.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

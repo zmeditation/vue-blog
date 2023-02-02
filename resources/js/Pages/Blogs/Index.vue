@@ -36,8 +36,8 @@ const props = defineProps({
                         </div>
                         <div class="w-full md:w-1/2">
                             <div class="flex flex-col justify-center h-full pr-5 pl-5 pb-5">
-                                <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ blog.title }}</h1>
-                                <p class="leading-relaxed mb-8">{{ blog.content }}</p>
+                                <a :href="`/blog/${blog.id}`"><h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ blog.title }}</h1></a>
+                                <p class="leading-relaxed mb-8" >{{ blog.content }}</p>
                             </div>
                         </div>
                     </div>
