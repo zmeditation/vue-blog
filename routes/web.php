@@ -40,6 +40,8 @@ Route::put('/blog/{blog}', [BlogController::class, 'update'])->name('blog.update
 Route::delete('/blog/{blog}', [BlogController::class, 'delete'])->name('blog.delete');
 Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
 
+Route::post('/blog/{blog}/comment', [CommentController::class, 'store'])->name('comment.store');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

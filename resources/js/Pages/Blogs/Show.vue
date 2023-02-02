@@ -1,6 +1,6 @@
  <script setup>  
  import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
- import { Head, Link } from '@inertiajs/vue3';
+ import { Head, Link, useForm } from '@inertiajs/vue3';
 
  const props = defineProps({
      blog: Array,
@@ -9,6 +9,15 @@
     });
 
  const created_at = props.blog.created_at.slice(0, 10);
+
+ const form = useForm({
+     content: null,
+ });
+
+function storeComment() {
+    form.post(`/blog/${props.blog.id}/comment`);
+    form.reset();
+}
 
  </script>
 
@@ -40,8 +49,10 @@
                         </div>
                         <div class="flex justify-center flex-col items-center mb-5">
                             <h1 class="text-lg">Write a comment</h1>
-                            <textarea name="comment" id="comment" class="w-4/6 mb-5 resize-none" rows="4"></textarea>
-                            <button type="button" class="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700  sm:ml-3 sm:w-auto sm:text-sm">Comment</button>
+                            <form @submit.prevent="storeComment" class="flex flex-col items-center w-4/6">
+                                <textarea name="content" id="content" v-model="form.content" class="mb-5 w-full resize-none" rows="4"></textarea>
+                                <button type="submit" class="inline-flex w-2/6 justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 sm:ml-3 sm:text-sm">Comment</button>
+                            </form>
                         </div>
                     </div>
                 </div>
