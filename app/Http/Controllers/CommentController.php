@@ -23,4 +23,32 @@ class CommentController extends Controller
 
         return Redirect::back();
      }
+
+    public function edit(Comment $comment)
+    {
+        return Inertia::render('Comments/Edit', [
+            'comment' => $comment,
+            'logged_in' => Auth::id(),
+        ]);
+    }
+
+    public function update(Comment $comment)
+    {
+        $comment->update([
+            'content' => Request::input('content'),
+        ]);
+
+        return Redirect::route('blog.show', $comment->blog_id);
+    }
+
+    public function delete(Comment $comment)
+    {
+        if($comment->user_id != Auth::id()){
+            return Redirect::route('blog.show', $comment->blog_id);
+        }
+
+        $comment->delete();
+
+        return Redirect::route('blog.show', $comment->blog_id);
+    }
 }

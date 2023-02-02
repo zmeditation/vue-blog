@@ -65,8 +65,8 @@ function storeComment() {
                                         <div class="flex justify-between">
                                             <p class="ml-4 text-xs text-gray-500 leading-relaxed mb-5">posted on {{ comment.created_at.slice(0, 10) }} </p>
                                             <div v-if="comment.user_id == logged_in">
-                                                <Link :href="`/blog/${blog.id}`" method="delete" as="button" type="button" class="text-lg mr-4"><font-awesome-icon icon="fa-solid fa-trash" style="color: rgb(129 140 248)" /></Link>
-                                                <Link :href="`/blog/${blog.id}/edit`" as="button" type="button" class="text-lg mr-4"><font-awesome-icon icon="fa-solid fa-pen-to-square" style="color: rgb(129 140 248)" /></Link>
+                                                <Link :href="`/comment/${comment.id}`" method="delete" as="button" type="button" class="text-lg mr-4"><font-awesome-icon icon="fa-solid fa-trash" style="color: rgb(129 140 248)" /></Link>
+                                                <Link :href="`/comment/${comment.id}/edit`" as="button" type="button" class="text-lg mr-4"><font-awesome-icon icon="fa-solid fa-pen-to-square" style="color: rgb(129 140 248)" /></Link>
                                             </div>
                                         </div>
                                     </div>
