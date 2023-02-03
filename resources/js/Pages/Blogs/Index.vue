@@ -13,7 +13,7 @@ const props = defineProps({
 
     <AuthenticatedLayout>
         <template #header>
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center mt-16">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">Blog</h2>
                 <form action="/blog">
                     <input type="text" v-model="search" placeholder="Search.." name="search" class="rounded">
