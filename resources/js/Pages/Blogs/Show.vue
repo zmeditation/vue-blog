@@ -3,9 +3,10 @@
  import { library } from '@fortawesome/fontawesome-svg-core'
  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
  import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+ import {faSquareFacebook, faSquareTwitter, faSquareGooglePlus, faSquareInstagram} from '@fortawesome/free-brands-svg-icons'
  import { Head, Link, useForm } from '@inertiajs/vue3';
 
- library.add(faTrash, faPenToSquare)
+ library.add(faTrash, faPenToSquare, faSquareFacebook, faSquareTwitter, faSquareGooglePlus, faSquareInstagram)
 
  const props = defineProps({
      blog: Array,
@@ -32,7 +33,7 @@ function storeComment() {
  <template>  
     <Head title="Blog" />  
      <AuthenticatedLayout>
-         <div class="py-12">
+         <div class="pb-12">
              <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex m-2 p-2">
                     <Link href="/blog" class="px-4 py-2 bg-indigo-500 hover:bg-indico-600 text-white rounded">Back</Link>
@@ -43,19 +44,30 @@ function storeComment() {
                          <Link :href="`/blog/${blog.id}/edit`"><button type="button" class=" float-right inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Edit</button></Link>
                      </div>
                         <div class="container mx-auto flex flex-wrap pt-6">
-                            <div class="w-full md:w-1/2 flex items-center">
-                                <img :src="/storage/ + blog.image" class="ml-16 w-10/12 h-auto max-h-96"/>
-                            </div>
-                            <div class="w-full md:w-1/2">
-                                <div class="flex flex-col justify-center h-full pr-5 pl-5 pb-5">
-                                    <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ blog.title }}</h1>
-                                    <p class="leading-relaxed mb-8 whitespace-pre-wrap">{{ blog.content }}</p>
+                            <div class="w-full md:w-1/2 flex flex-col flex-grow flex-shrink">
+                                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+                                    <div class="w-full flex flex-col items-center">
+                                        <p class="w-10/12 text-gray-600 text-sm md:text-base">Posted by {{ user_name }} on {{ created_at }}</p>
+                                        <div class="w-10/12 font-bold text-3xl text-gray-900 mb-6">{{ blog.title }}</div>
+                                    </div>
+                                    <div class="flex justify-center"><img :src="/storage/ + blog.image" class="w-10/12 h-auto"/></div>
+                                    <div class="w-10/12 flex flex-row m-auto">
+                                        <div class="flex flex-col text-gray-800 font-serif text-base mb-5 mt-5 w-1/12 whitespace-pre-wrap">
+                                            <p class="text-gray-400 font-sans">Share</p>
+                                            <font-awesome-icon class="fa-3x mr-10" style="color: rgb(59 89 152)" icon="fa-brands fa-square-facebook" />
+                                            <font-awesome-icon class="fa-3x mr-10" style="color: rgb(29 161 242)" icon="fa-brands fa-square-twitter" />
+                                            <font-awesome-icon class="fa-3x mr-10" style="color: rgb(221 75 57)" icon="fa-brands fa-square-google-plus" />
+                                            <font-awesome-icon class="fa-3x mr-10" style="color: rgb(225 48 108)" icon="fa-brands fa-square-instagram" />
+                                        </div>
+                                        <div class="text-gray-800 font-serif text-base mb-5 mt-5 w-6/12 whitespace-pre-wrap">
+                                            {{ blog.content }}
+                                        </div>
+                                        <div class="flex justify-center text-gray-800 font-serif text-base mb-5 mt-5 w-5/12 whitespace-pre-wrap">
+						                    <img src="https://blogs.nvidia.com/wp-content/uploads/2023/01/drive-reg-nv-blog-406x350-1.jpg" class="w-11/12 h-80">
+						                    <a href="https://www.nvidia.com/gtc/?nvid=nv-int-bnr-636609" class="subscribe-inner"></a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex flex-col justify-center items-left h-full pr-5 pl-16">
-                                <p class="leading-relaxed mb-5"> {{ created_at }} by <span class="text-indigo-500"> {{ user_name }} </span></p>
                             </div>
                         </div>
                         <hr>
