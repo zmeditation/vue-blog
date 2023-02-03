@@ -3,10 +3,10 @@
  import { library } from '@fortawesome/fontawesome-svg-core'
  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
  import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
- import {faSquareFacebook, faSquareTwitter, faSquareGooglePlus, faSquareInstagram} from '@fortawesome/free-brands-svg-icons'
+ import {faSquareFacebook, faSquareTwitter, faSquareGooglePlus, faSquareInstagram, faLinkedin} from '@fortawesome/free-brands-svg-icons'
  import { Head, Link, useForm } from '@inertiajs/vue3';
 
- library.add(faTrash, faPenToSquare, faSquareFacebook, faSquareTwitter, faSquareGooglePlus, faSquareInstagram)
+ library.add(faTrash, faPenToSquare, faSquareFacebook, faSquareTwitter, faSquareGooglePlus, faSquareInstagram, faLinkedin)
 
  const props = defineProps({
      blog: Array,
@@ -51,20 +51,20 @@ function storeComment() {
                                         <div class="w-10/12 font-bold text-3xl text-gray-900 mb-6">{{ blog.title }}</div>
                                     </div>
                                     <div class="flex justify-center"><img :src="/storage/ + blog.image" class="w-10/12 h-auto"/></div>
-                                    <div class="w-10/12 flex flex-row m-auto">
+                                    <div class="w-10/12 py-4 flex flex-row m-auto">
                                         <div class="flex flex-col text-gray-800 font-serif text-base mb-5 mt-5 w-1/12 whitespace-pre-wrap">
-                                            <p class="text-gray-400 font-sans">Share</p>
-                                            <font-awesome-icon class="fa-3x mr-10" style="color: rgb(59 89 152)" icon="fa-brands fa-square-facebook" />
-                                            <font-awesome-icon class="fa-3x mr-10" style="color: rgb(29 161 242)" icon="fa-brands fa-square-twitter" />
-                                            <font-awesome-icon class="fa-3x mr-10" style="color: rgb(221 75 57)" icon="fa-brands fa-square-google-plus" />
-                                            <font-awesome-icon class="fa-3x mr-10" style="color: rgb(225 48 108)" icon="fa-brands fa-square-instagram" />
+                                            <p class="text-gray-400 font-sans mb-2">Share</p>
+                                            <font-awesome-icon class="fa-3x mr-10 mb-2" style="color: rgb(59 89 152)" icon="fa-brands fa-square-facebook" />
+                                            <font-awesome-icon class="fa-3x mr-10 mb-2" style="color: rgb(29 161 242)" icon="fa-brands fa-square-twitter" />
+                                            <font-awesome-icon class="fa-3x mr-10 mb-2" style="color: rgb(221 75 57)" icon="fa-brands fa-square-google-plus" />
+                                            <font-awesome-icon class="fa-3x mr-10 mb-2" style="color: rgb(225 48 108)" icon="fa-brands fa-square-instagram" />
+                                            <font-awesome-icon class="fa-3x mr-10 mb-2" style="color: rgb(14 118 168)" icon="fa-brands fa-linkedin" />
                                         </div>
                                         <div class="text-gray-800 font-serif text-base mb-5 mt-5 w-6/12 whitespace-pre-wrap">
                                             {{ blog.content }}
                                         </div>
                                         <div class="flex justify-center text-gray-800 font-serif text-base mb-5 mt-5 w-5/12 whitespace-pre-wrap">
 						                    <img src="https://blogs.nvidia.com/wp-content/uploads/2023/01/drive-reg-nv-blog-406x350-1.jpg" class="w-11/12 h-80">
-						                    <a href="https://www.nvidia.com/gtc/?nvid=nv-int-bnr-636609" class="subscribe-inner"></a>
                                         </div>
                                     </div>
                                 </div>
