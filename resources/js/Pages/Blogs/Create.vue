@@ -29,7 +29,7 @@ function storeBlog() {
                     <Link href="/blog" class="px-4 py-2 bg-indigo-500 hover:bg-indico-600 text-white rounded">Back</Link>
                 </div>
                 <div>
-                    <div class="grid place-content-center mt-10">
+                    <div class="place-content-center mt-10">
                         <form @submit.prevent="storeBlog" class="bg-white shadow-md m-2 p-2 rounded">
                             <div class="sm:col-span-6">
                                 <label for="title" class="block text-lg font-medium text-gray-700">Title</label>

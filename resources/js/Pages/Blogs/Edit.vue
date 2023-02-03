@@ -59,7 +59,7 @@ function updateBlog() {
                                     <input type="file" name="image" id="image" @input="form.image = $event.target.files[0]" class="shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                                 </div>
                                 <div class="m-2 p-2">
-                                    <img :src="image" class="w-32 h-32"/>
+                                    <img :src="image" class="w-64 h-64"/>
                                 </div>
                             </div>
                             <div class="m-2 p-2">
