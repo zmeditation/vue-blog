@@ -22,7 +22,6 @@ const props = defineProps({
                 <Link href="/blog/create" class="px-8 py-2 mr-4 bg-indigo-500 hover:bg-indico-600 text-white rounded">Create</Link>
             </div>
         </template>
-
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div v-for="blog in blogs" :key="blog.id" class="bg-white overflow-hidden shadow-xl sm:rounded-lg mb-5">
@@ -32,7 +31,7 @@ const props = defineProps({
                     </div>
                         <div class="container mx-auto flex flex-wrap pt-6">
                         <div class="w-full md:w-1/2 flex items-center">
-                            <img :src="blog.image" class="ml-16 w-10/12 h-5/6 max-h-96"/>
+                            <img :src="blog.image" class="ml-16 w-10/12 h-auto max-h-96"/>
                         </div>
                         <div class="w-full md:w-1/2">
                             <div class="flex flex-col justify-center h-full pr-5 pl-5 pb-5">

@@ -44,12 +44,12 @@ function storeComment() {
                      </div>
                         <div class="container mx-auto flex flex-wrap pt-6">
                             <div class="w-full md:w-1/2 flex items-center">
-                                <img :src="/storage/ + blog.image" class="ml-16 w-10/12 h-5/6 max-h-96"/>
+                                <img :src="/storage/ + blog.image" class="ml-16 w-10/12 h-auto max-h-96"/>
                             </div>
                             <div class="w-full md:w-1/2">
                                 <div class="flex flex-col justify-center h-full pr-5 pl-5 pb-5">
                                     <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ blog.title }}</h1>
-                                    <p class="leading-relaxed mb-8">{{ blog.content }}</p>
+                                    <p class="leading-relaxed mb-8 whitespace-pre-wrap">{{ blog.content }}</p>
                                 </div>
                             </div>
                         </div>
@@ -58,8 +58,9 @@ function storeComment() {
                                 <p class="leading-relaxed mb-5"> {{ created_at }} by <span class="text-indigo-500"> {{ user_name }} </span></p>
                             </div>
                         </div>
+                        <hr>
                         <div class="flex justify-center flex-col items-center mb-5">
-                            <h1 class="text-lg">Comments</h1>
+                            <h1 class="text-lg mt-6">Comments</h1>
                             <div class="flex flex-col w-4/6">
                                 <div v-for="comment in comments" :key="comment.id" class="flex flex-col w-full">
                                     <div class="flex flex-col w-full border shadow rounded my-2">
